@@ -59,7 +59,7 @@ const AuthPage = () => {
                 <Form {...form}>
                   <form
                     onSubmit={form.handleSubmit(onSubmit)}
-                    className="xs:space-y-5 md:space-y-8 space-y-6  w-full flex flex-col items-center"
+                    className="xs:space-y-5 md:space-y-8 space-y-6  md:w-[486px] w-[360px] flex flex-col items-center"
                   >
                     {/* custom input fields  */}
                     <CustomFormField
@@ -116,7 +116,7 @@ const AuthPage = () => {
               </>
             ) : (
               <Form {...form}>
-                <form className="xs:space-y-5 md:space-y-8 space-y-6  w-full flex flex-col items-center">
+                <form className="xs:space-y-5 md:space-y-8 space-y-6  md:w-[486px] w-[360px] flex flex-col items-center">
                   <CustomFormField
                     control={form.control}
                     fieldType={FormFieldType.INPUT}
