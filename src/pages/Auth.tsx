@@ -20,6 +20,7 @@ const AuthPage = () => {
     setIsSignUp((prev) => !prev);
   };
 
+  //use zod signup validation in react-hook-form
   const form = useForm<z.infer<typeof SignupValidation>>({
     resolver: zodResolver(SignupValidation),
     defaultValues: {
@@ -54,11 +55,13 @@ const AuthPage = () => {
           <div className="flex flex-col items-center">
             {isSignUp ? (
               <>
+                {/* Form from shad cn for easier datavalidation with zod */}
                 <Form {...form}>
                   <form
                     onSubmit={form.handleSubmit(onSubmit)}
                     className="xs:space-y-5 md:space-y-8 space-y-6  w-full flex flex-col items-center"
                   >
+                    {/* custom input fields  */}
                     <CustomFormField
                       control={form.control}
                       fieldType={FormFieldType.INPUT}

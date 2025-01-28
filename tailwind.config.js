@@ -15,6 +15,9 @@ export default {
         card: {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
+          overdue: "hsl(var(--card-overdue))",
+          complete: "hsl(var(--card-complete))",
+          inprogress: "hsl(var(--card-inprogress))",
         },
         popover: {
           DEFAULT: "hsl(var(--popover))",

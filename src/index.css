@@ -6,6 +6,9 @@
     --background: 0 0% 100%;
     --foreground: 0, 0%, 24%, 1;
     --card: 0 0% 100%;
+    --card-inprogress: 224, 64%, 33%;
+    --card-overdue: 0, 73%, 41%;
+    --card-complete: 151, 98%, 21%;
     --card-foreground: 0 0% 3.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 3.9%;

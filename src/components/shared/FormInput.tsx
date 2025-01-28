@@ -46,8 +46,10 @@ const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
     renderSkeleton,
   } = props;
 
+  //open state and ref for dropdown select
   const [selectOpen, setSelectOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -67,7 +69,7 @@ const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
   switch (fieldType) {
     case FormFieldType.INPUT:
       return (
-        <div className="flex rounded-3xl border  h-[58px] items-center text-sm p-0 focus-within:border-foreground w-[380px] md:w-[486px] shadow-sm">
+        <div className="flex rounded-3xl border  h-[58px] items-center text-sm p-0 focus-within:border-foreground shadow-sm">
           <FormControl>
             <Input
               placeholder={placeholder}
@@ -101,7 +103,7 @@ const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
       );
     case FormFieldType.SELECT:
       return (
-        <div className="md:w-[486px] w-[380px]" ref={dropdownRef}>
+        <div className="" ref={dropdownRef}>
           <div
             className={`flex rounded-3xl border   min-h-[58px] text-sm px-6  w-full shadow-sm text-muted-foreground ${
               selectOpen ? "rounded-b-none border-b border-foreground" : ""
@@ -132,7 +134,7 @@ const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
                 <li
                   className="py-6 px-6 hover:text-foreground text-muted-foreground hover:bg-[#F5F5F5] cursor-pointer"
                   onClick={() => {
-                    field.onChange("Client");
+                    field.onChange("client");
                     setSelectOpen(false);
                   }}
                 >
@@ -141,7 +143,7 @@ const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
                 <li
                   className="py-6 px-6 hover:text-foreground text-muted-foreground hover:bg-[#F5F5F5] cursor-pointer"
                   onClick={() => {
-                    field.onChange("Employee");
+                    field.onChange("employee");
                     setSelectOpen(false);
                   }}
                 >
@@ -150,7 +152,7 @@ const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
                 <li
                   className="py-6 px-6 hover:text-foreground text-muted-foreground hover:bg-[#F5F5F5] cursor-pointer"
                   onClick={() => {
-                    field.onChange("Customer Representatives");
+                    field.onChange("customer representatives");
                     setSelectOpen(false);
                   }}
                 >
@@ -197,7 +199,7 @@ const CustomFormField = (props: CustomProps) => {
       control={control}
       name={name}
       render={({ field }) => (
-        <FormItem className="flex-1 ">
+        <FormItem className="flex-1 md:w-[486px] w-[360px]">
           {fieldType !== FormFieldType.CHECKBOX && label && (
             <FormLabel>{label}</FormLabel>
           )}
