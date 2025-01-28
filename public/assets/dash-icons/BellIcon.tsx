@@ -1,8 +1,8 @@
 const BellIcon = () => {
   return (
     <svg
-      width="26"
-      height="34"
+      width="24"
+      height="32"
       viewBox="0 0 26 34"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

@@ -1,16 +1,27 @@
+import { Link } from "react-router";
+
 import ProgressImage from "/images/ProgressImage.png";
 import ExclamationImage from "/images/ExclamationImage.png";
 import CompleteCircleImage from "/images/CompleteCircleImage.png";
 import PaidRedImage from "/images/PaidRedImage.png";
 import PaidGreenImage from "/images/PaidGreenImage.png";
+
 import ProjectTable from "../../components/ProjectTable";
 import DashCard, { DashCardPlain } from "@/components/shared/DashCard";
-import { Link } from "react-router";
+import ProjectChart from "@/components/ProjectChart";
+import { Card } from "@/components/ui/card";
+import {
+  Select,
+  SelectContent,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import MilestoneChart from "@/components/MilestoneChart";
 
 const Dashboard = () => {
   return (
     <div className="min-h-screen space-y-16">
-      <div className="flex flex-col xl:flex-row gap-6">
+      <section className="flex flex-col xl:flex-row gap-6">
         <div className="md:grid flex flex-wrap grid-cols-3 gap-6 overflow-x-auto  md:w-auto">
           <DashCard
             content="Active tasks"
@@ -67,9 +78,53 @@ const Dashboard = () => {
             }
           />
         </div>
-      </div>
+      </section>
 
-      <div>
+      {/* Charts section */}
+
+      <section className="hidden md:flex flex-col xl:flex-row gap-8 ">
+        <Card className="border-secondary-border bg-transparent rounded-3xl border-2  h-[319px] w-[695px]">
+          <div className="flex w-full justify-between px-4 py-4">
+            <h1 className="font-semibold text-lg">Project Progress Chart</h1>
+            <Select>
+              <SelectTrigger className="w-[167px] py-4 px-8  bg-muted rounded-full text-muted-foreground">
+                <SelectValue placeholder="Month" />
+              </SelectTrigger>
+              <SelectContent>
+                {/* <SelectItem value="light">Light</SelectItem>
+                <SelectItem value="dark">Dark</SelectItem>
+                <SelectItem value="system">System</SelectItem> */}
+              </SelectContent>
+            </Select>
+          </div>
+          <div className="p-4 border-t-2">
+            <ProjectChart />
+          </div>
+        </Card>
+
+        {/*milestone pie chart */}
+        <Card className="border-secondary-border bg-transparent rounded-3xl border-2 flex-1">
+          <div className="flex w-full justify-between px-4 py-4">
+            <h1 className="font-semibold text-lg">
+              Milestone Completion Chart
+            </h1>
+            <Select>
+              <SelectTrigger className="w-[167px] py-4 px-8  bg-muted rounded-full text-muted-foreground">
+                <SelectValue placeholder="Month" />
+              </SelectTrigger>
+              <SelectContent>
+                {/* <SelectItem value="light">Light</SelectItem>
+                <SelectItem value="dark">Dark</SelectItem>
+                <SelectItem value="system">System</SelectItem> */}
+              </SelectContent>
+            </Select>
+          </div>
+          <div className="p-4 border-t-2 relative">
+            <MilestoneChart />
+          </div>
+        </Card>
+      </section>
+      <section>
         <div className="flex justify-between">
           <h2 className="text-lg text-foreground font-bold mb-4">
             Recent Projects
@@ -81,7 +136,7 @@ const Dashboard = () => {
         <div className="overflow-hidden">
           <ProjectTable />
         </div>
-      </div>
+      </section>
     </div>
   );
 };

@@ -4,11 +4,12 @@ import DashboardNav, { DashboardNavMobile } from "./DashboardNav";
 
 const DashboardLayout = () => {
   return (
-    <div className="flex h-screen bg-gray-100 max-w-[2000px] mx-auto">
+    <div className="flex h-screen  max-w-[2000px] mx-auto">
+      {/* side nav */}
       <DashboardNav />
       <div className="flex flex-col flex-1">
         <DashboardHeader />
-        <main className="flex-1 p-6 overflow-y-auto">
+        <main className="flex-1 p-6 overflow-y-auto rounded-3xl bg-primary-foreground">
           <Outlet />
         </main>
         <DashboardNavMobile />
