@@ -3,7 +3,7 @@ import ExclamationImage from "/images/ExclamationImage.png";
 import CompleteCircleImage from "/images/CompleteCircleImage.png";
 import PaidRedImage from "/images/PaidRedImage.png";
 import PaidGreenImage from "/images/PaidGreenImage.png";
-import ProjectTable from "../../components/ProjectTable";
+import ProjectTable from "../../components/dashboard/ProjectTable";
 import { IoIosArrowDown } from "react-icons/io";
 import { FaArrowUp, FaArrowDown } from "react-icons/fa";
 import DashCard, { DashCardPlain } from "@/components/shared/DashCard";

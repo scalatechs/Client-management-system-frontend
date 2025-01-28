@@ -6,9 +6,9 @@ import CompleteCircleImage from "/images/CompleteCircleImage.png";
 import PaidRedImage from "/images/PaidRedImage.png";
 import PaidGreenImage from "/images/PaidGreenImage.png";
 
-import ProjectTable from "../../components/ProjectTable";
+import ProjectTable from "@/components/dashboard/ProjectTable";
 import DashCard, { DashCardPlain } from "@/components/shared/DashCard";
-import ProjectChart from "@/components/ProjectChart";
+import ProjectChart from "@/components/dashboard/ProjectChart";
 import { Card } from "@/components/ui/card";
 import {
   Select,
@@ -16,11 +16,14 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import MilestoneChart from "@/components/MilestoneChart";
+import MilestoneChart from "@/components/dashboard/MilestoneChart";
+import MilestoneTable from "@/components/dashboard/MilestoneTable";
+import ComplaintsStatusTable from "@/components/dashboard/ComplaintStatusTable";
 
 const Dashboard = () => {
   return (
     <div className="min-h-screen space-y-16">
+      {/* Cards */}
       <section className="flex flex-col xl:flex-row gap-6">
         <div className="md:grid flex flex-wrap grid-cols-3 gap-6 overflow-x-auto  md:w-auto">
           <DashCard
@@ -80,7 +83,7 @@ const Dashboard = () => {
         </div>
       </section>
 
-      {/* Charts section */}
+      {/* Charts */}
 
       <section className="hidden md:flex flex-col xl:flex-row gap-8 ">
         <Card className="border-secondary-border bg-transparent rounded-3xl border-2  h-[319px] w-[695px]">
@@ -124,18 +127,18 @@ const Dashboard = () => {
           </div>
         </Card>
       </section>
+
+      {/* Tables */}
       <section>
-        <div className="flex justify-between">
-          <h2 className="text-lg text-foreground font-bold mb-4">
-            Recent Projects
-          </h2>
-          <Link to={"/"} className="!text-primary-light">
-            View all Projects
-          </Link>
-        </div>
-        <div className="overflow-hidden">
-          <ProjectTable />
-        </div>
+        {/* projects */}
+        <ProjectTable />
+
+        {/* Milestones */}
+        <MilestoneTable />
+
+        {/* ComplaintStatus */}
+
+        <ComplaintsStatusTable />
       </section>
     </div>
   );

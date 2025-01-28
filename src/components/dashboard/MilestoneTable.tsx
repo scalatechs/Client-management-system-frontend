@@ -1,15 +1,26 @@
 import { useState } from "react";
-import { FaArrowUp, FaArrowDown } from "react-icons/fa";
 import { GoFilter } from "react-icons/go";
 
-import { Button } from "./ui/button";
+import { Button } from "../ui/button";
 import { Card } from "@/components/ui/card";
+import { Link } from "react-router";
+import { ChevronDown, ChevronUp } from "lucide-react";
 
-const ProjectTable = () => {
-  const [projects, setProjects] = useState([
+type MilestoneType = {
+  name: string;
+  projectName: string;
+  dueDate: string;
+  status: string;
+  priority: string;
+  statusColor: string;
+  priorityColor: string;
+};
+
+const MilestoneTable = () => {
+  const [projects, setProjects] = useState<MilestoneType[]>([
     {
       name: "Website Redesign",
-      startDate: "January 1, 2023",
+      projectName: "Project 1",
       dueDate: "March 15, 2023",
       status: "Completed",
       priority: "Medium",
@@ -18,7 +29,7 @@ const ProjectTable = () => {
     },
     {
       name: "E-commerce Platform Setup",
-      startDate: "January 1, 2023",
+      projectName: "Project 1",
       dueDate: "March 15, 2023",
       status: "In Progress",
       priority: "High",
@@ -27,7 +38,7 @@ const ProjectTable = () => {
     },
     {
       name: "Mobile App Development",
-      startDate: "January 1, 2023",
+      projectName: "Project 1",
       dueDate: "March 15, 2023",
       status: "Not Started",
       priority: "Low",
@@ -38,35 +49,43 @@ const ProjectTable = () => {
 
   const [sortConfig, setSortConfig] = useState({ key: "", direction: "" });
 
-  const sortTable = (key) => {
+  const sortTable = (key: keyof MilestoneType = "name") => {
     let direction = "ascending";
     if (sortConfig.key === key && sortConfig.direction === "ascending") {
       direction = "descending";
     }
-
-    const sortedProjects = [...projects].sort((a, b) => {
-      if (a[key] < b[key]) return direction === "ascending" ? -1 : 1;
-      if (a[key] > b[key]) return direction === "ascending" ? 1 : -1;
-      return 0;
-    });
+    const sortedProjects = [...projects].sort(
+      (a: MilestoneType, b: MilestoneType) => {
+        const comparison = a[key] < b[key] ? -1 : a[key] > b[key] ? 1 : 0;
+        return direction === "ascending" ? comparison : -comparison;
+      }
+    );
 
     setProjects(sortedProjects);
     setSortConfig({ key, direction });
   };
 
-  const getSortIcon = (key) => {
+  const getSortIcon = (key: string) => {
     if (sortConfig.key === key) {
       return sortConfig.direction === "ascending" ? (
-        <FaArrowUp />
+        <ChevronUp />
       ) : (
-        <FaArrowDown />
+        <ChevronDown />
       );
     }
-    return <FaArrowDown />;
+    return <ChevronDown />;
   };
 
   return (
-    <section>
+    <section className="mb-8">
+      <div className="flex justify-between">
+        <h2 className="text-lg text-foreground font-bold mb-4">
+          Upcoming Milestones Overview
+        </h2>
+        <Link to={"/"} className="!text-primary-light">
+          View all Projects
+        </Link>
+      </div>
       {/* table for medium + devices */}
       <table
         className="min-w-full border-separate hidden md:table"
@@ -74,23 +93,27 @@ const ProjectTable = () => {
       >
         <thead>
           <tr className="text-[#B3B3B3]">
-            {["name", "startDate", "dueDate"].map((key, index) => (
-              <th
-                key={index}
-                className="py-2 px-4 text-left cursor-pointer font-normal"
-                onClick={() => sortTable(key)}
-              >
-                <div className="flex items-center gap-2">
-                  {key === "name" && "Project Name"}
-                  {key === "startDate" && "Start Date"}
-                  {key === "dueDate" && "Due Date"}
-                  {getSortIcon(key)}
-                </div>
-              </th>
-            ))}
-            <th className="py-2 px-4 text-left font-normal">Status</th>
+            <th className="py-2 px-4 text-left font-normal">Milestone Name</th>
+            <th className="py-2 px-4 text-left font-normal">Project Name</th>
+
+            {(["dueDate", "status"] as Array<keyof MilestoneType>).map(
+              (key, index) => (
+                <th
+                  key={index}
+                  className="py-2 px-4 text-left cursor-pointer font-normal"
+                  onClick={() => sortTable(key)}
+                >
+                  <div className="flex items-center gap-2">
+                    {key === "dueDate" && "Due Date"}
+                    {key === "status" && "Status"}
+                    {getSortIcon(key)}
+                  </div>
+                </th>
+              )
+            )}
+
             <th className="py-2 px-4 text-left font-normal">Priority</th>
-            <th className="py-2 px-4 text-left font-normal">Action</th>
+            <th className="py-2 px-4 text-left font-normal">Notes</th>
           </tr>
         </thead>
         <tbody>
@@ -100,29 +123,29 @@ const ProjectTable = () => {
               className="bg-[#F8F8F8] hover:bg-gray-100"
               style={{ borderRadius: "8px", overflow: "hidden" }}
             >
-              <td className="py-8 px-4 border-l border-t border-b border-[#E0E0E0] rounded-l-lg">
+              <td className="py-8 px-4 border-l border-t border-b  rounded-l-lg">
                 {project.name}
               </td>
-              <td className="py-8 px-4 border-t border-b border-[#E0E0E0]">
-                {project.startDate}
+              <td className="py-8 px-4 border-t border-b ">
+                {project.projectName}
               </td>
-              <td className="py-8 px-4 border-t border-b border-[#E0E0E0]">
+              <td className="py-8 px-4 border-t border-b ">
                 {project.dueDate}
               </td>
               <td
-                className={`py-8 px-4 border-t border-b border-[#E0E0E0] ${project.statusColor}`}
+                className={`py-8 px-4 border-t border-b  ${project.statusColor}`}
               >
                 {project.status}
               </td>
-              <td className="py-8 px-4 border-t border-b border-[#E0E0E0] text-center">
+              <td className="py-8 px-4 border-t border-b  text-center">
                 <button
                   className={`py-2 px-4 rounded-full ${project.priorityColor}`}
                 >
                   {project.priority}
                 </button>
               </td>
-              <td className="py-4 px-4 border-t border-b border-r border-[#E0E0E0] rounded-r-lg text-blue-600 hover:underline cursor-pointer">
-                View
+              <td className="py-4 px-4 border-t border-b border-r  rounded-r-lg ">
+                Initial design dpproval
               </td>
             </tr>
           ))}
@@ -153,4 +176,4 @@ const ProjectTable = () => {
   );
 };
 
-export default ProjectTable;
+export default MilestoneTable;
