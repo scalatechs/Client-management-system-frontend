@@ -27,11 +27,13 @@ export default {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
           dark: "hsl(var(--primary-dark))",
+          light: "hsl(var(--primary-light))",
           green: "hsl(var(--primary-green))",
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
           foreground: "hsl(var(--secondary-foreground))",
+          border: "hsl(var(--secondary-border))",
         },
         muted: {
           DEFAULT: "hsl(var(--muted))",

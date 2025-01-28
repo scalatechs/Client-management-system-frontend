@@ -11,24 +11,24 @@ import DashCard, { DashCardPlain } from "@/components/shared/DashCard";
 const Timeline = () => {
   return (
     <div className="min-h-screen">
-      <div className="flex gap-6">
-        <div className="flex gap-6">
+      <div className="flex gap-6 flex-col lg:flex-row">
+        <div className="md:grid flex flex-wrap grid-cols-3 gap-6 overflow-x-auto  md:w-auto">
           <DashCard
             content="In Progress"
             numbers={12}
-            icon={<img src={ProgressImage} alt="progress" />}
+            top={<img src={ProgressImage} alt="progress" />}
             type="active"
           />
           <DashCard
             content="Completed"
             numbers={25}
-            icon={<img src={CompleteCircleImage} alt="progress" />}
+            top={<img src={CompleteCircleImage} alt="progress" />}
             type="complete"
           />
           <DashCard
             content="Not started"
             numbers={2}
-            icon={<img src={ExclamationImage} alt="progress" />}
+            top={<img src={ExclamationImage} alt="progress" />}
             type="notStarted"
           />
         </div>
@@ -36,13 +36,13 @@ const Timeline = () => {
           <DashCardPlain
             content="Total amount paid"
             head={"$750"}
-            icon={<img src={PaidGreenImage} alt="progress" />}
+            top={<img src={PaidGreenImage} alt="progress" />}
           />
 
           <DashCardPlain
             content="Pending Payments"
             head={"50"}
-            icon={<img src={PaidRedImage} alt="progress" />}
+            top={<img src={PaidRedImage} alt="progress" />}
           />
         </div>
       </div>

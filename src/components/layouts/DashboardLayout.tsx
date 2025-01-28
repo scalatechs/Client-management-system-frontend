@@ -1,16 +1,17 @@
 import { Outlet } from "react-router";
-import DashboardHeader from "../../components/DashboardHeader";
-import DashboardSidebar from "../../components/DashboardSidebar";
+import DashboardHeader from "./DashboardHeader";
+import DashboardNav, { DashboardNavMobile } from "./DashboardNav";
 
 const DashboardLayout = () => {
   return (
     <div className="flex h-screen bg-gray-100 max-w-[2000px] mx-auto">
-      <DashboardSidebar />
+      <DashboardNav />
       <div className="flex flex-col flex-1">
         <DashboardHeader />
         <main className="flex-1 p-6 overflow-y-auto">
           <Outlet />
         </main>
+        <DashboardNavMobile />
       </div>
     </div>
   );

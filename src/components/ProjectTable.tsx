@@ -1,5 +1,9 @@
 import { useState } from "react";
 import { FaArrowUp, FaArrowDown } from "react-icons/fa";
+import { GoFilter } from "react-icons/go";
+
+import { Button } from "./ui/button";
+import { Card } from "@/components/ui/card";
 
 const ProjectTable = () => {
   const [projects, setProjects] = useState([
@@ -52,15 +56,20 @@ const ProjectTable = () => {
 
   const getSortIcon = (key) => {
     if (sortConfig.key === key) {
-      return sortConfig.direction === "ascending" ? <FaArrowUp /> : <FaArrowDown />;
+      return sortConfig.direction === "ascending" ? (
+        <FaArrowUp />
+      ) : (
+        <FaArrowDown />
+      );
     }
     return <FaArrowDown />;
   };
 
   return (
-    <div className="p-4">
+    <section>
+      {/* table for medium + devices */}
       <table
-        className="min-w-full border-separate"
+        className="min-w-full border-separate hidden md:table"
         style={{ borderSpacing: "0 10px" }}
       >
         <thead>
@@ -119,7 +128,28 @@ const ProjectTable = () => {
           ))}
         </tbody>
       </table>
-    </div>
+      {/* for small devices */}
+      <div className="md:hidden space-y-4">
+        <Button className="bg-muted text-muted-foreground hover:text-muted-foreground hover:bg-muted text-xs flex gap-[10px] ml-auto">
+          <GoFilter className="h-4 w-4" />
+          Filter
+        </Button>
+        <Card className="bg-secondary border-secondary-border text-xs px-4 py-6 gap-6 grid grid-cols-2 font-normal">
+          <div className="font-semibold">Project name</div>
+          <div className="font-semibold">Website Redesign</div>
+          <div>Start Date</div>
+          <div>Website Redesign</div>
+          <div>Due Date</div>
+          <div>Website Redesign</div>
+          <div>Status</div>
+          <div>Website Redesign</div>
+          <div>Priority</div>
+          <div>Project name</div>
+          <div>Action</div>
+          <div>Website Redesign</div>
+        </Card>
+      </div>
+    </section>
   );
 };
 

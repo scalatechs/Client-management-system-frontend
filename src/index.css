@@ -14,11 +14,13 @@
     --popover-foreground: 0 0% 3.9%;
     --primary: 226, 100%, 50%;
     --primary-dark: 226, 98%, 43%;
+    --primary-light: 212, 72%, 59%;
     --primary-foreground: 0 0% 98%;
     --primary-green: 122, 39%, 49%;
-    --secondary: 0 0% 96.1%;
+    --secondary: 0 0% 96%;
+    --secondary-border: 0, 0%, 88%;
     --secondary-foreground: 0 0% 9%;
-    --muted: 0 0% 96.1%;
+    --muted: 0 0% 94%;
     --muted-foreground: 0, 0%, 70%;
     --accent: 0 0% 96.1%;
     --accent-foreground: 0 0% 9%;

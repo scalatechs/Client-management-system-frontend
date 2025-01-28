@@ -1,5 +1,5 @@
-import BellIcon from "../../public/assets/dash-icons/BellIcon";
-import ProfileImage from "../../public/images/ProfileImage.png";
+import BellIcon from "../../../public/assets/dash-icons/BellIcon";
+import ProfileImage from "../../../public/images/ProfileImage.png";
 
 const DashboardHeader = () => {
   return (
