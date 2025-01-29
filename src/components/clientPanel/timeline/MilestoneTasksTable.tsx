@@ -1,20 +1,15 @@
 import { useState } from "react";
-
 import { GoFilter } from "react-icons/go";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { PiChatCircleLight } from "react-icons/pi";
-import { BsPinAngle } from "react-icons/bs";
-import { BsPinAngleFill } from "react-icons/bs";
-
+import { BsPinAngle, BsPinAngleFill } from "react-icons/bs";
 import { Button } from "../../ui/button";
 import { Card } from "../../ui/card";
 import clsx from "clsx";
 
 const MilestoneTasksTable = ({ milestone }: { milestone?: MilestoneType }) => {
   const [tasks, setTasks] = useState<Task[]>(milestone?.tasks || []);
-
   const [pinned, setPinned] = useState<string[]>([]);
-
   const [sortConfig, setSortConfig] = useState({ key: "", direction: "" });
 
   const sortTable = (key: keyof Task = "name") => {
@@ -22,12 +17,11 @@ const MilestoneTasksTable = ({ milestone }: { milestone?: MilestoneType }) => {
     if (sortConfig.key === key && sortConfig.direction === "ascending") {
       direction = "descending";
     }
-    const sortedProjects = [...tasks].sort((a: Task, b: Task) => {
+    const sortedTasks = [...tasks].sort((a, b) => {
       const comparison = a[key] < b[key] ? -1 : a[key] > b[key] ? 1 : 0;
       return direction === "ascending" ? comparison : -comparison;
     });
-
-    setTasks(sortedProjects);
+    setTasks(sortedTasks);
     setSortConfig({ key, direction });
   };
 

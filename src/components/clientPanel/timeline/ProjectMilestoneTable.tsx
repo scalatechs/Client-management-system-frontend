@@ -3,40 +3,24 @@ import { Link, useNavigate } from "react-router";
 import { GoFilter } from "react-icons/go";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { PiChatCircleLight } from "react-icons/pi";
-import { BsPinAngle } from "react-icons/bs";
-import { BsPinAngleFill } from "react-icons/bs";
-
+import { BsPinAngle, BsPinAngleFill } from "react-icons/bs";
 import { Button } from "../../ui/button";
 import { Card } from "../../ui/card";
 import clsx from "clsx";
 import routes from "@/routes";
+import useSortableTable from "@/hooks/useSortTable";
 
 const ProjectMilestone = ({ project }: { project?: ProjectType }) => {
-  const [projectMilestones, setProjectMilestones] = useState<MilestoneType[]>(
-    project?.milestones || []
-  );
+  const initialMilestones = project?.milestones || [];
+  const {
+    data: projectMilestones,
+    sortTable,
+    sortConfig,
+  } = useSortableTable(initialMilestones); // Use hook
   const [pinned, setPinned] = useState<string[]>([]);
   const navigate = useNavigate();
 
-  const [sortConfig, setSortConfig] = useState({ key: "", direction: "" });
-
-  const sortTable = (key: keyof MilestoneType = "name") => {
-    let direction = "ascending";
-    if (sortConfig.key === key && sortConfig.direction === "ascending") {
-      direction = "descending";
-    }
-    const sortedProjects = [...projectMilestones].sort(
-      (a: MilestoneType, b: MilestoneType) => {
-        const comparison = a[key] < b[key] ? -1 : a[key] > b[key] ? 1 : 0;
-        return direction === "ascending" ? comparison : -comparison;
-      }
-    );
-
-    setProjectMilestones(sortedProjects);
-    setSortConfig({ key, direction });
-  };
-
-  const getSortIcon = (key: string) => {
+  const getSortIcon = (key: keyof MilestoneType) => {
     if (sortConfig.key === key) {
       return sortConfig.direction === "ascending" ? (
         <ChevronUp />
