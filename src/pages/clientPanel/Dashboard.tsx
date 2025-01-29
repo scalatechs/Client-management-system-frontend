@@ -6,9 +6,9 @@ import CompleteCircleImage from "/images/CompleteCircleImage.png";
 import PaidRedImage from "/images/PaidRedImage.png";
 import PaidGreenImage from "/images/PaidGreenImage.png";
 
-import ProjectTable from "@/components/dashboard/ProjectTable";
+import ProjectTable from "@/components/clientPanel/ProjectTable";
 import DashCard, { DashCardPlain } from "@/components/shared/DashCard";
-import ProjectChart from "@/components/dashboard/ProjectChart";
+import ProjectChart from "@/components/clientPanel/ProjectChart";
 import { Card } from "@/components/ui/card";
 import {
   Select,
@@ -16,13 +16,14 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import MilestoneChart from "@/components/dashboard/MilestoneChart";
-import MilestoneTable from "@/components/dashboard/MilestoneTable";
-import ComplaintsStatusTable from "@/components/dashboard/ComplaintStatusTable";
+import MilestoneChart from "@/components/clientPanel/MilestoneChart";
+import MilestoneTable from "@/components/clientPanel/MilestoneTable";
+import ComplaintsStatusTable from "@/components/clientPanel/ComplaintStatusTable";
 
 const Dashboard = () => {
   return (
-    <div className="min-h-screen space-y-16">
+    <section className="min-h-screen space-y-10">
+      <h1 className="page-header">Dashboard Overview</h1>
       {/* Cards */}
       <section className="flex flex-col xl:flex-row gap-6">
         <div className="md:grid flex flex-wrap grid-cols-3 gap-6 overflow-x-auto  md:w-auto">
@@ -140,7 +141,7 @@ const Dashboard = () => {
 
         <ComplaintsStatusTable />
       </section>
-    </div>
+    </section>
   );
 };
 

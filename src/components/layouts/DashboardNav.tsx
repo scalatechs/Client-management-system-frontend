@@ -6,27 +6,28 @@ import { GoCreditCard } from "react-icons/go";
 import { LayoutDashboard } from "lucide-react";
 import { HiOutlineSupport } from "react-icons/hi";
 import { FiLogOut } from "react-icons/fi";
+import routes from "@/routes";
 
 const menuItems = [
   {
     label: "DASHBOARD",
     icon: <LayoutDashboard className="w-6 h-6" />,
-    path: "/dashboard",
+    path: routes.clientPanel.dashboard,
   },
   {
     label: "TIMELINE",
     icon: <CiViewTimeline className="w-6 h-6 " />,
-    path: "/timeline",
+    path: routes.clientPanel.timeline.home,
   },
   {
     label: "CHATS",
     icon: <BsChatText className="w-6 h-6" />,
-    path: "/chats",
+    path: routes.clientPanel.chats,
   },
   {
     label: "PAYMENTS",
     icon: <GoCreditCard className="w-6 h-6" />,
-    path: "/payments",
+    path: routes.clientPanel.dashboard,
   },
 ];
 

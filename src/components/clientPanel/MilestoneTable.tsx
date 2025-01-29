@@ -1,69 +1,17 @@
-import { useState } from "react";
 import { GoFilter } from "react-icons/go";
-
 import { Button } from "../ui/button";
 import { Card } from "@/components/ui/card";
 import { Link } from "react-router";
 import { ChevronDown, ChevronUp } from "lucide-react";
-
-type MilestoneType = {
-  name: string;
-  projectName: string;
-  dueDate: string;
-  status: string;
-  priority: string;
-  statusColor: string;
-  priorityColor: string;
-};
+import useSortableTable from "@/hooks/useSortTable";
+import { milestones as initialMilestones } from "@/constants/data";
 
 const MilestoneTable = () => {
-  const [projects, setProjects] = useState<MilestoneType[]>([
-    {
-      name: "Website Redesign",
-      projectName: "Project 1",
-      dueDate: "March 15, 2023",
-      status: "Completed",
-      priority: "Medium",
-      statusColor: "",
-      priorityColor: "bg-[#FF9800] text-white",
-    },
-    {
-      name: "E-commerce Platform Setup",
-      projectName: "Project 1",
-      dueDate: "March 15, 2023",
-      status: "In Progress",
-      priority: "High",
-      statusColor: "text-blue-500",
-      priorityColor: "bg-[#F44336]   text-white",
-    },
-    {
-      name: "Mobile App Development",
-      projectName: "Project 1",
-      dueDate: "March 15, 2023",
-      status: "Not Started",
-      priority: "Low",
-      statusColor: "text-gray-500",
-      priorityColor: "bg-[#FFC107] text-white",
-    },
-  ]);
-
-  const [sortConfig, setSortConfig] = useState({ key: "", direction: "" });
-
-  const sortTable = (key: keyof MilestoneType = "name") => {
-    let direction = "ascending";
-    if (sortConfig.key === key && sortConfig.direction === "ascending") {
-      direction = "descending";
-    }
-    const sortedProjects = [...projects].sort(
-      (a: MilestoneType, b: MilestoneType) => {
-        const comparison = a[key] < b[key] ? -1 : a[key] > b[key] ? 1 : 0;
-        return direction === "ascending" ? comparison : -comparison;
-      }
-    );
-
-    setProjects(sortedProjects);
-    setSortConfig({ key, direction });
-  };
+  const {
+    data: milestones,
+    sortTable,
+    sortConfig,
+  } = useSortableTable(initialMilestones); // Use the custom hook
 
   const getSortIcon = (key: string) => {
     if (sortConfig.key === key) {
@@ -86,7 +34,7 @@ const MilestoneTable = () => {
           View all Projects
         </Link>
       </div>
-      {/* table for medium + devices */}
+      {/* Table for medium + devices */}
       <table
         className="min-w-full border-separate hidden md:table"
         style={{ borderSpacing: "0 10px" }}
@@ -95,7 +43,6 @@ const MilestoneTable = () => {
           <tr className="text-[#B3B3B3]">
             <th className="py-2 px-4 text-left font-normal">Milestone Name</th>
             <th className="py-2 px-4 text-left font-normal">Project Name</th>
-
             {(["dueDate", "status"] as Array<keyof MilestoneType>).map(
               (key, index) => (
                 <th
@@ -111,47 +58,47 @@ const MilestoneTable = () => {
                 </th>
               )
             )}
-
             <th className="py-2 px-4 text-left font-normal">Priority</th>
             <th className="py-2 px-4 text-left font-normal">Notes</th>
           </tr>
         </thead>
         <tbody>
-          {projects.map((project, index) => (
+          {milestones.map((milestone, index) => (
             <tr
               key={index}
               className="bg-[#F8F8F8] hover:bg-gray-100"
               style={{ borderRadius: "8px", overflow: "hidden" }}
             >
               <td className="py-8 px-4 border-l border-t border-b  rounded-l-lg">
-                {project.name}
+                {milestone.name}
               </td>
               <td className="py-8 px-4 border-t border-b ">
-                {project.projectName}
+                {milestone.projectName}
               </td>
               <td className="py-8 px-4 border-t border-b ">
-                {project.dueDate}
+                {milestone.dueDate}
               </td>
               <td
-                className={`py-8 px-4 border-t border-b  ${project.statusColor}`}
+                className={`py-8 px-4 border-t border-b ${milestone.statusColor}`}
               >
-                {project.status}
+                {milestone.status}
               </td>
-              <td className="py-8 px-4 border-t border-b  text-center">
+              <td className="py-8 px-4 border-t border-b text-center">
                 <button
-                  className={`py-2 px-4 rounded-full ${project.priorityColor}`}
+                  className={`py-2 px-4 rounded-full ${milestone.priorityColor}`}
                 >
-                  {project.priority}
+                  {milestone.priority}
                 </button>
               </td>
-              <td className="py-4 px-4 border-t border-b border-r  rounded-r-lg ">
-                Initial design dpproval
+              <td className="py-4 px-4 border-t border-b border-r  rounded-r-lg">
+                Initial design approval
               </td>
             </tr>
           ))}
         </tbody>
       </table>
-      {/* for small devices */}
+
+      {/* For small devices */}
       <div className="md:hidden space-y-4">
         <Button className="bg-muted text-muted-foreground hover:text-muted-foreground hover:bg-muted text-xs flex gap-[10px] ml-auto">
           <GoFilter className="h-4 w-4" />

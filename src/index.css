@@ -6,6 +6,9 @@
     --background: 0 0% 100%;
     --foreground: 0, 0%, 24%, 1;
     --card: 0 0% 100%;
+    --priority-high: 4, 90%, 58%;
+    --priority-low: 45, 100%, 51%;
+    --priority-medium: 36, 100%, 50%;
     --card-inprogress: 224, 64%, 33%;
     --card-overdue: 0, 73%, 41%;
     --card-complete: 151, 98%, 21%;
@@ -78,7 +81,24 @@
   .form-input-icon {
     @apply h-11 focus-visible:ring-0 focus-visible:ring-offset-0 !important;
   }
-}
-.form-select-trigger {
-  @apply h-11 rounded-xl focus-visible:ring-0 focus-visible:ring-offset-0 !important;
+
+  .form-select-trigger {
+    @apply h-11 rounded-xl focus-visible:ring-0 focus-visible:ring-offset-0 !important;
+  }
+
+  .page-header {
+    @apply text-foreground text-lg font-semibold;
+  }
+
+  .table_data_left {
+    @apply py-8 px-4 border-l border-t border-b border-[#E0E0E0] rounded-l-3xl;
+  }
+
+  .table_data_right {
+    @apply py-8 px-4 border-r border-t border-b border-[#E0E0E0] rounded-r-3xl;
+  }
+
+  .table_data_pinned > td {
+    @apply bg-[#ECF4FC] border-[#A2BFDC];
+  }
 }

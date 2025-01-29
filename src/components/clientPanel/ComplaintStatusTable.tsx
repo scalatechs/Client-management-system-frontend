@@ -1,10 +1,10 @@
-import { useState } from "react";
 import { GoFilter } from "react-icons/go";
 
 import { Button } from "../ui/button";
 import { Card } from "@/components/ui/card";
 import { Link } from "react-router";
 import { ChevronDown, ChevronUp } from "lucide-react";
+import useSortableTable from "@/hooks/useSortTable";
 
 type ComplaintType = {
   id: string;
@@ -15,7 +15,7 @@ type ComplaintType = {
 };
 
 const ComplaintsStatusTable = () => {
-  const [projects, setProjects] = useState<ComplaintType[]>([
+  const initialComplaints: ComplaintType[] = [
     {
       id: "#12312",
       complaint: "Project alpha issue with payment",
@@ -24,38 +24,26 @@ const ComplaintsStatusTable = () => {
       statusColor: "text-orange-500",
     },
     {
-      id: "#12312",
-      complaint: "Project alpha issue with payment",
-      dateFiled: "January 10, 2024",
+      id: "#12313",
+      complaint: "Project beta delay",
+      dateFiled: "January 15, 2024",
       status: "Resolved",
       statusColor: "text-primary-green",
     },
     {
-      id: "#12312",
-      complaint: "Project alpha issue with payment",
-      dateFiled: "January 10, 2024",
+      id: "#12314",
+      complaint: "Project gamma issue with shipping",
+      dateFiled: "January 20, 2024",
       status: "In Progress",
       statusColor: "text-primary-light",
     },
-  ]);
+  ];
 
-  const [sortConfig, setSortConfig] = useState({ key: "", direction: "" });
-
-  const sortTable = (key: keyof ComplaintType = "id") => {
-    let direction = "ascending";
-    if (sortConfig.key === key && sortConfig.direction === "ascending") {
-      direction = "descending";
-    }
-    const sortedProjects = [...projects].sort(
-      (a: ComplaintType, b: ComplaintType) => {
-        const comparison = a[key] < b[key] ? -1 : a[key] > b[key] ? 1 : 0;
-        return direction === "ascending" ? comparison : -comparison;
-      }
-    );
-
-    setProjects(sortedProjects);
-    setSortConfig({ key, direction });
-  };
+  const {
+    data: complaints,
+    sortTable,
+    sortConfig,
+  } = useSortableTable(initialComplaints);
 
   const getSortIcon = (key: string) => {
     if (sortConfig.key === key) {
@@ -75,18 +63,18 @@ const ComplaintsStatusTable = () => {
           Complaint Status
         </h2>
         <Link to={"/"} className="!text-primary-light">
-          View all Projects
+          View all Complaints
         </Link>
       </div>
-      {/* table for medium + devices */}
+      {/* Table for medium + devices */}
       <table
         className="min-w-full border-separate hidden md:table"
         style={{ borderSpacing: "0 10px" }}
       >
         <thead>
           <tr className="text-[#B3B3B3]">
-            <th className="py-2 px-4 text-left font-normal">Milestone Name</th>
-            <th className="py-2 px-4 text-left font-normal">Project Name</th>
+            <th className="py-2 px-4 text-left font-normal">Complaint ID</th>
+            <th className="py-2 px-4 text-left font-normal">Complaint</th>
             <th className="py-2 px-4 text-left font-normal">Date Filed</th>
             {(["status"] as Array<keyof ComplaintType>).map((key, index) => (
               <th
@@ -103,31 +91,32 @@ const ComplaintsStatusTable = () => {
           </tr>
         </thead>
         <tbody>
-          {projects.map((project, index) => (
+          {complaints.map((complaint, index) => (
             <tr
               key={index}
               className="bg-[#F8F8F8] hover:bg-gray-100"
               style={{ borderRadius: "8px", overflow: "hidden" }}
             >
-              <td className="py-8 px-4 border-l border-t border-b  rounded-l-lg">
-                {project.id}
+              <td className="py-8 px-4 border-l border-t border-b rounded-l-lg">
+                {complaint.id}
               </td>
-              <td className="py-8 px-4 border-t border-b ">
-                {project.complaint}
+              <td className="py-8 px-4 border-t border-b">
+                {complaint.complaint}
               </td>
-              <td className="py-8 px-4 border-t border-b ">
-                {project.dateFiled}
+              <td className="py-8 px-4 border-t border-b">
+                {complaint.dateFiled}
               </td>
               <td
-                className={`py-8 px-4 border-t border-b  ${project.statusColor}`}
+                className={`py-8 px-4 border-t border-b ${complaint.statusColor}`}
               >
-                {project.status}
+                {complaint.status}
               </td>
             </tr>
           ))}
         </tbody>
       </table>
-      {/* for small devices */}
+
+      {/* For small devices */}
       <div className="md:hidden space-y-4">
         <Button className="bg-muted text-muted-foreground hover:text-muted-foreground hover:bg-muted text-xs flex gap-[10px] ml-auto">
           <GoFilter className="h-4 w-4" />

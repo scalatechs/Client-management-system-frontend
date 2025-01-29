@@ -13,7 +13,7 @@ import {
 import { Input } from "../ui/input";
 import { Textarea } from "../ui/textarea";
 import { Checkbox } from "../ui/checkbox";
-import { FormFieldType } from "@/types/types";
+
 import { ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import clsx from "clsx";

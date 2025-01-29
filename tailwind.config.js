@@ -10,6 +10,11 @@ export default {
         sm: "calc(var(--radius) - 4px)",
       },
       colors: {
+        priority: {
+          low: "hsl(var(--priority-low))",
+          high: "hsl(var(--priority-high))",
+          medium: "hsl(var(--priority-medium))",
+        },
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         card: {
