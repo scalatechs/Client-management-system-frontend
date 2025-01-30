@@ -1,3 +1,7 @@
+import Complaints from "@/components/clientPanel/profile/Complaints";
+import Password from "@/components/clientPanel/profile/Password";
+import PersonalInformation from "@/components/clientPanel/profile/PersonalInformation";
+
 import React, { useState } from "react";
 
 const SectionContainer = ({
@@ -22,13 +26,16 @@ const SectionContainer = ({
 };
 
 const Profile = () => {
-  const [selectedControl, setSelectedControl] = useState<string | null>(
-    "personalInformation1"
-  );
+  const [selectedControl, setSelectedControl] = useState({
+    id: "personalInformation",
+    title: "Personal Information",
+    desc: "Lorem ipsum dolor sit amit",
+    icon: "/assets/icons/user-icon.png",
+  });
 
   const sections = [
     {
-      id: "personalInformation1",
+      id: "personalInformation",
       title: "Personal Information",
       desc: "Lorem ipsum dolor sit amit",
       icon: "/assets/icons/user-icon.png",
@@ -54,7 +61,8 @@ const Profile = () => {
   ];
 
   return (
-    <section className="p-4">
+    <section className="p-4 flex gap-[82px] items-center">
+      {/* Selection section */}
       <div className="bg-white flex rounded-3xl p-6 items-center flex-col w-[445px] gap-12">
         <div className="space-y-6 text-center">
           <img src="/assets/user-profile.png" alt="user profile" />
@@ -66,8 +74,8 @@ const Profile = () => {
           {sections.map((section) => (
             <SectionContainer
               key={section.id}
-              isSelected={selectedControl === section.id}
-              onClick={() => setSelectedControl(section.id)}
+              isSelected={selectedControl.id === section.id}
+              onClick={() => setSelectedControl(section)}
             >
               <img src={section.icon} />
               <div>
@@ -78,6 +86,12 @@ const Profile = () => {
           ))}
         </div>
       </div>
+
+      {/* Content based on the selected section */}
+      {selectedControl.id === "personalInformation" && <PersonalInformation />}
+      {selectedControl.id === "password" && <Password />}
+      {selectedControl.id === "complaints" && <Complaints />}
+      {selectedControl.id === "myTransactions" && <PersonalInformation />}
     </section>
   );
 };
