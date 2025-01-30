@@ -18,10 +18,10 @@ import Complaints from "./pages/clientPanel/profile/Complaints";
 import MyTransactions from "./pages/clientPanel/profile/MyTransactions";
 
 const AppRouter = () => {
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 1400);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
   useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth < 1400);
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);

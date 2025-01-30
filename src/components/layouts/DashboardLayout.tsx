@@ -11,7 +11,7 @@ const DashboardLayout = () => {
       <DashboardNav />
       <div className="flex flex-col flex-1">
         <DashboardHeader />
-        <main className="flex-1 xl:p-6 overflow-y-auto rounded-3xl bg-primary-foreground">
+        <main className="flex-1 xl:p-6 overflow-y-auto rounded-3xl bg-primary-foreground pb-20">
           <Outlet />
           <ChatBot />
         </main>

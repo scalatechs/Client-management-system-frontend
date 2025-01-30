@@ -17,7 +17,7 @@ const ProjectOverview = () => {
   const project = projectsData.find((project) => project.id === projectId);
 
   return (
-    <section className="space-y-10">
+    <section className="space-y-10 pb-20">
       <div className="flex justify-between w-full font-semibold">
         <div className="flex text-2xl  items-center gap-6">
           <Link to={routes.clientPanel.timeline.home}>
