@@ -61,7 +61,7 @@ const Profile = () => {
 
   return (
     <>
-      <section className="p-4 hidden xl:flex gap-[82px] items-center">
+      <section className="p-4 hidden lg:flex gap-[82px] items-center">
         {/* Selection section */}
         <div className="bg-white flex rounded-3xl p-6 items-center flex-col w-[445px] gap-12">
           <div className="space-y-6 text-center">
@@ -88,7 +88,7 @@ const Profile = () => {
       </section>
 
       {/* profile page for small devices */}
-      <section className="flex xl:hidden items-center md:w-full justify-center">
+      <section className="flex lg:hidden items-center md:w-full justify-center">
         {/* Selection section */}
         <div className="flex rounded-3xl p-6 items-center flex-col  gap-12">
           <div className="space-y-6 text-center">

@@ -6,7 +6,7 @@ import { Link } from "react-router";
 
 const PersonalInformation = () => {
   return (
-    <div className="space-y-14 xl:w-[610px] p-2">
+    <div className="space-y-14 lg:w-[610px] p-2">
       <div>
         <Link
           to={routes.clientPanel.profile.profile}
