@@ -1,5 +1,5 @@
-import BellIcon from "../../../public/assets/dash-icons/BellIcon";
-import ProfileImage from "../../../public/images/ProfileImage.png";
+import NotificationPanel from "./NotificationPanel";
+import ProfileImage from "/images/ProfileImage.png";
 
 const DashboardHeader = () => {
   return (
@@ -16,14 +16,7 @@ const DashboardHeader = () => {
 
       {/* Notification and Profile Section */}
       <div className="flex items gap-4">
-        {/* Notification Bell */}
-        <div className="relative">
-          <button className="focus:outline-none">
-            <BellIcon />
-          </button>
-          <span className="absolute top-0 -right-1 inline-flex items-center justify-center w-3 h-3 text-xs font-bold text-white bg-red-500 rounded-full"></span>
-        </div>
-
+        <NotificationPanel />
         {/* Profile Image */}
         <button className="w-8 h-8 overflow-hidden bg-gray-200 rounded-full focus:outline-none">
           <img

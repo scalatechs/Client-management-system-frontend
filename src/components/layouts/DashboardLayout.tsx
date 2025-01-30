@@ -2,7 +2,7 @@ import { Outlet } from "react-router";
 
 import DashboardHeader from "./DashboardHeader";
 import DashboardNav, { DashboardNavMobile } from "./DashboardNav";
-import ChatBot from "../shared/ChatBot";
+import ChatBot from "./ChatBot";
 
 const DashboardLayout = () => {
   return (
