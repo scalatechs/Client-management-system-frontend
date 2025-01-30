@@ -23,7 +23,7 @@ const DashboardHeader = () => {
         <NotificationPanel />
         {/* Profile Image */}
         <Link
-          to={routes.clientPanel.profile}
+          to={routes.clientPanel.profile.personalInfo}
           className="w-8 h-8 overflow-hidden bg-gray-200 rounded-full focus:outline-none"
         >
           <img

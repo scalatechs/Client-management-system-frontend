@@ -10,7 +10,13 @@ const routes = {
     chats: "/chats",
     payments: "/payments",
     payment: "/payments/payment-now/",
-    profile: "/profile",
+    profile: {
+      profile: "/profile",
+      personalInfo: "/profile/personalInfo",
+      password: "/profile/password",
+      complaints: "/profile/complaints",
+      myTransactions: "/profile/myTransactions",
+    },
   },
 };
 

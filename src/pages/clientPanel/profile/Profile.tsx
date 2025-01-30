@@ -1,62 +1,58 @@
-import Complaints from "@/components/clientPanel/profile/Complaints";
-import Password from "@/components/clientPanel/profile/Password";
-import PersonalInformation from "@/components/clientPanel/profile/PersonalInformation";
+import routes from "@/routes";
 
-import React, { useState } from "react";
+import React from "react";
+import { NavLink, Outlet } from "react-router";
 
 const SectionContainer = ({
+  link,
   children,
-  isSelected,
-  onClick,
 }: {
+  link: string;
   children: React.ReactNode;
-  isSelected: boolean;
-  onClick: () => void;
 }) => {
   return (
-    <div
-      onClick={onClick}
-      className={`h-[118px] w-full flex gap-4 items-center border-l-[3px] ${
-        isSelected ? "border-blue-500  bg-[#FCFCFC]" : "border-transparent"
-      } py-6 px-4 cursor-pointer`}
+    <NavLink
+      to={link}
+      className={({ isActive }) =>
+        `h-[118px] w-full flex gap-4 items-center border-l-[3px] ${
+          isActive ? "border-blue-500  bg-[#FCFCFC]" : "border-transparent"
+        } py-6 px-4 cursor-pointer`
+      }
     >
       {children}
-    </div>
+    </NavLink>
   );
 };
 
 const Profile = () => {
-  const [selectedControl, setSelectedControl] = useState({
-    id: "personalInformation",
-    title: "Personal Information",
-    desc: "Lorem ipsum dolor sit amit",
-    icon: "/assets/icons/user-icon.png",
-  });
-
   const sections = [
     {
       id: "personalInformation",
       title: "Personal Information",
       desc: "Lorem ipsum dolor sit amit",
       icon: "/assets/icons/user-icon.png",
+      link: routes.clientPanel.profile.personalInfo,
     },
     {
       id: "password",
       title: "Password",
       desc: "Lorem ipsum dolor sit amit",
       icon: "/assets/icons/lock-icon.png",
+      link: routes.clientPanel.profile.password,
     },
     {
       id: "complaints",
       title: "Complaints",
       desc: "Lorem ipsum dolor sit amit",
       icon: "/assets/icons/comments-icon.png",
+      link: routes.clientPanel.profile.complaints,
     },
     {
       id: "myTransactions",
       title: "My Transactions",
       desc: "Lorem ipsum dolor sit amit",
       icon: "/assets/icons/transaction.png",
+      link: routes.clientPanel.profile.myTransactions,
     },
   ];
 
@@ -72,11 +68,7 @@ const Profile = () => {
         </div>
         <div className="w-full">
           {sections.map((section) => (
-            <SectionContainer
-              key={section.id}
-              isSelected={selectedControl.id === section.id}
-              onClick={() => setSelectedControl(section)}
-            >
+            <SectionContainer key={section.id} link={section?.link}>
               <img src={section.icon} />
               <div>
                 <h2 className="text-xl font-medium">{section.title}</h2>
@@ -87,11 +79,8 @@ const Profile = () => {
         </div>
       </div>
 
-      {/* Content based on the selected section */}
-      {selectedControl.id === "personalInformation" && <PersonalInformation />}
-      {selectedControl.id === "password" && <Password />}
-      {selectedControl.id === "complaints" && <Complaints />}
-      {selectedControl.id === "myTransactions" && <PersonalInformation />}
+      {/* react router outlet for profile layout */}
+      <Outlet />
     </section>
   );
 };

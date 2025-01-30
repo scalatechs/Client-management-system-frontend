@@ -10,7 +10,11 @@ import ProjectOverview from "./pages/clientPanel/timeline/ProjectOverview";
 import MilestoneTasks from "./pages/clientPanel/timeline/MilestoneTasks";
 import Payments from "./pages/clientPanel/payments/Payments";
 import PaymentMethod from "./pages/clientPanel/payments/PaymentMethod";
-import Profile from "./pages/clientPanel/Profile";
+import Profile from "./pages/clientPanel/profile/Profile";
+import PersonalInformation from "./pages/clientPanel/profile/PersonalInformation";
+import Password from "./pages/clientPanel/profile/Password";
+import Complaints from "./pages/clientPanel/profile/Complaints";
+import MyTransactions from "./pages/clientPanel/profile/MyTransactions";
 
 const AppRouter = () => {
   return (
@@ -41,7 +45,27 @@ const AppRouter = () => {
             path={routes.clientPanel.payment + ":paymentId"}
             element={<PaymentMethod />}
           />
-          <Route path={routes.clientPanel.profile} element={<Profile />} />
+          <Route
+            path={routes.clientPanel.profile.profile}
+            element={<Profile />}
+          >
+            <Route
+              path={routes.clientPanel.profile.personalInfo}
+              element={<PersonalInformation />}
+            />
+            <Route
+              path={routes.clientPanel.profile.password}
+              element={<Password />}
+            />
+            <Route
+              path={routes.clientPanel.profile.complaints}
+              element={<Complaints />}
+            />
+            <Route
+              path={routes.clientPanel.profile.myTransactions}
+              element={<MyTransactions />}
+            />
+          </Route>
         </Route>
       </Routes>
     </Router>

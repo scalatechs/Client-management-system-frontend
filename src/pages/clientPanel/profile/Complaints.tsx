@@ -165,7 +165,7 @@ const Complaints = () => {
       <section>
         {/* Table for medium + devices */}
         <table
-          className="min-w-full border-separate hidden md:table"
+          className="min-w-full border-separate hidden md:table "
           style={{ borderSpacing: "0 10px" }}
         >
           <thead>
