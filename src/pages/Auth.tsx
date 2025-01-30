@@ -9,6 +9,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import CheckCircle from "/assets/form/CheckCircle.svg";
 import { SignupValidation } from "@/lib/validation";
 import CustomFormField from "@/components/shared/FormInput";
+import { FormFieldType } from "@/types/types";
 
 import { Button } from "@/components/ui/button";
 

@@ -17,6 +17,7 @@ import { Checkbox } from "../ui/checkbox";
 import { ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import clsx from "clsx";
+import { FormFieldType } from "@/types/types";
 
 interface CustomProps {
   control: Control<any>;

@@ -41,6 +41,16 @@ declare global {
     priorityColor: string;
     milestones: MilestoneType[];
   };
+
+  interface PaymentType {
+    id: string;
+    invoiceId: string;
+    project: ProjectType;
+    dateIssued: string;
+    dueDate: string;
+    status: "Completed" | "Pending";
+    price: string;
+  }
 }
 
 export {};

@@ -27,7 +27,7 @@ const menuItems = [
   {
     label: "PAYMENTS",
     icon: <GoCreditCard className="w-6 h-6" />,
-    path: routes.clientPanel.dashboard,
+    path: routes.clientPanel.payments,
   },
 ];
 

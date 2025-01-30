@@ -8,6 +8,8 @@ const routes = {
       // projectMilestoneTasks: "/timeline/project/:projectId/milestone-tasks/",
     },
     chats: "/chats",
+    payments: "/payments",
+    payment: "/payments/payment-now/",
   },
 };
 
