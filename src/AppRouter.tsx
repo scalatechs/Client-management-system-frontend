@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router";
+import { useEffect, useState } from "react";
 
 import AuthPage from "./pages/Auth";
 import Dashboard from "./pages/clientPanel/Dashboard";
@@ -17,6 +18,14 @@ import Complaints from "./pages/clientPanel/profile/Complaints";
 import MyTransactions from "./pages/clientPanel/profile/MyTransactions";
 
 const AppRouter = () => {
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 1400);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 1400);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
     <Router>
       <Routes>
@@ -45,27 +54,58 @@ const AppRouter = () => {
             path={routes.clientPanel.payment + ":paymentId"}
             element={<PaymentMethod />}
           />
-          <Route
-            path={routes.clientPanel.profile.profile}
-            element={<Profile />}
-          >
-            <Route
-              path={routes.clientPanel.profile.personalInfo}
-              element={<PersonalInformation />}
-            />
-            <Route
-              path={routes.clientPanel.profile.password}
-              element={<Password />}
-            />
-            <Route
-              path={routes.clientPanel.profile.complaints}
-              element={<Complaints />}
-            />
-            <Route
-              path={routes.clientPanel.profile.myTransactions}
-              element={<MyTransactions />}
-            />
-          </Route>
+
+          {/* Profile Section */}
+          {isMobile ? (
+            <>
+              <Route
+                path={routes.clientPanel.profile.profile}
+                element={<Profile />}
+              />
+              <Route
+                path={routes.clientPanel.profile.personalInfo}
+                element={<PersonalInformation />}
+              />
+              <Route
+                path={routes.clientPanel.profile.password}
+                element={<Password />}
+              />
+              <Route
+                path={routes.clientPanel.profile.complaints}
+                element={<Complaints />}
+              />
+              <Route
+                path={routes.clientPanel.profile.myTransactions}
+                element={<MyTransactions />}
+              />
+            </>
+          ) : (
+            <>
+              <Route
+                path={routes.clientPanel.profile.profile}
+                element={<Profile />}
+              >
+                <Route index element={<PersonalInformation />} />
+                <Route
+                  path={routes.clientPanel.profile.personalInfo}
+                  element={<PersonalInformation />}
+                />
+
+                <Route
+                  path={routes.clientPanel.profile.password}
+                  element={<Password />}
+                />
+                <Route
+                  path={routes.clientPanel.profile.complaints}
+                  element={<Complaints />}
+                />
+                <Route
+                  path={routes.clientPanel.profile.myTransactions}
+                  element={<MyTransactions />}
+                />
+              </Route>
+            </>
+          )}
         </Route>
       </Routes>
     </Router>

@@ -59,7 +59,7 @@ const NotificationPanel = () => {
             onClick={handleClickOutside}
           >
             <motion.div
-              className="absolute flex flex-col gap-10 top-20 right-20 bg-white p-8 rounded-2xl shadow-xl max-w-2xl overflow-y-auto max-h-[767px] w-full"
+              className="absolute flex flex-col gap-10 xl:top-20 top-16  xl:right-20 bg-white p-8 rounded-2xl shadow-xl max-w-2xl overflow-y-auto max-h-[767px] xl:w-full"
               initial={{ y: -50, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: 50, opacity: 0 }}

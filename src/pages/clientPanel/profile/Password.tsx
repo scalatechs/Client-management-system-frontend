@@ -1,10 +1,19 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import routes from "@/routes";
+import { ChevronLeft } from "lucide-react";
+import { Link } from "react-router";
 
 const Password = () => {
   return (
-    <div className="space-y-14 w-[610px]">
+    <div className="space-y-14 xl:w-[610px] p-2 my-auto">
       <div>
+        <Link
+          to={routes.clientPanel.profile.profile}
+          className="block xl:hidden mb-20"
+        >
+          <ChevronLeft />
+        </Link>
         <h1 className="font-semibold text-2xl ">Password</h1>
         <p className="text-muted-foreground">Lorem ipsum dolor sit amit</p>
       </div>

@@ -1,12 +1,14 @@
 import { Button } from "@/components/ui/button";
 import { GoFilter } from "react-icons/go";
 import { Card } from "@/components/ui/card";
-import { ChevronDown, ChevronUp, Plus, X } from "lucide-react";
+import { ChevronDown, ChevronLeft, ChevronUp, Plus, X } from "lucide-react";
 import useSortableTable from "@/hooks/useSortTable";
 import { AnimatePresence, motion } from "framer-motion";
 import { MouseEvent, useRef, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { Link } from "react-router";
+import routes from "@/routes";
 
 type ComplaintType = {
   id: string;
@@ -66,13 +68,21 @@ const Complaints = () => {
   };
 
   return (
-    <div className="gap-6 flex  flex-col ">
-      <Button
-        className="transition-all w-fit self-end hover:w-[220px]"
-        onClick={() => setOpen(true)}
-      >
-        ADD COMPLAIN
-      </Button>
+    <div className="gap-6 flex p-3 xl:p-0 flex-col ">
+      <div className="flex justify-between xl:justify-end">
+        <Link
+          to={routes.clientPanel.profile.profile}
+          className="block xl:hidden"
+        >
+          <ChevronLeft />
+        </Link>
+        <Button
+          className="transition-all w-fit self-end hover:w-[220px]"
+          onClick={() => setOpen(true)}
+        >
+          ADD COMPLAIN
+        </Button>
+      </div>
       <AnimatePresence>
         {open && (
           <motion.div
