@@ -10,6 +10,7 @@ import ProjectOverview from "./pages/clientPanel/timeline/ProjectOverview";
 import MilestoneTasks from "./pages/clientPanel/timeline/MilestoneTasks";
 import Payments from "./pages/clientPanel/payments/Payments";
 import PaymentMethod from "./pages/clientPanel/payments/PaymentMethod";
+import Profile from "./pages/clientPanel/Profile";
 
 const AppRouter = () => {
   return (
@@ -40,6 +41,7 @@ const AppRouter = () => {
             path={routes.clientPanel.payment + ":paymentId"}
             element={<PaymentMethod />}
           />
+          <Route path={routes.clientPanel.profile} element={<Profile />} />
         </Route>
       </Routes>
     </Router>
