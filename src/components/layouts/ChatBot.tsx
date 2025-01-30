@@ -6,6 +6,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Input } from "../ui/input";
+import { ArrowRight } from "lucide-react";
 
 const ChatBot = () => {
   return (
@@ -82,7 +83,7 @@ const ChatBot = () => {
                 placeholder="SEND MESSAGE..."
               />
               <div className="w-[48px] h-[48px] md:w-[58px] md:h-[59px] bg-primary rounded-3xl flex items-center justify-center">
-                <TfiClip className="-scale-y-100" size={24} color="white" />
+                <ArrowRight className="-scale-y-100" size={24} color="white" />
               </div>
             </div>
           </div>
