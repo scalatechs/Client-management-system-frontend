@@ -16,6 +16,7 @@ import PersonalInformation from "./pages/clientPanel/profile/PersonalInformation
 import Password from "./pages/clientPanel/profile/Password";
 import Complaints from "./pages/clientPanel/profile/Complaints";
 import MyTransactions from "./pages/clientPanel/profile/MyTransactions";
+import NotFound from "./pages/NotFound";
 
 const AppRouter = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
@@ -107,6 +108,9 @@ const AppRouter = () => {
             </>
           )}
         </Route>
+
+        {/* Not foound page */}
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
   );
